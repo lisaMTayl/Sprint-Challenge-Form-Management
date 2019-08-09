@@ -4,7 +4,7 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App">
+    <div data-testid='renderedForm' className="App">
       <FormikRegForm />
     </div>
   );
