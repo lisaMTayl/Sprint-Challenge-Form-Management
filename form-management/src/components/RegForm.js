@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Form, Field, withFormik } from 'formik';
+import Recipes from './Recipes'
 import * as Yup from 'yup';
 
 const RegForm = ({ status, errors, touched, values, isSubmitting }) => {
@@ -13,30 +14,33 @@ const RegForm = ({ status, errors, touched, values, isSubmitting }) => {
     }
   }, [status]);
 
+
+
   return (
     <div className="reg-form">
-    <h1>Registration Form</h1>
+      <h1>Registration Form</h1>
 
-  <Form>
-    <div>
-      <Field type="text" name="userName" placeholder="username" />
-      {touched.userName && errors.userName && <p>{errors.userName}</p>}
+      <Form>
+        <div>
+          <Field type="text" name="userName" placeholder="username" />
+          {touched.userName && errors.userName && <p>{errors.userName}</p>}
+        </div>
+
+        <div>
+          {touched.password && errors.password && <p>{errors.password}</p>}
+          <Field type="password" name="password" placeholder="Password" />
+        </div>
+
+        <button type='submit' disabled={isSubmitting}>Submit!</button>
+      </Form>
+
+      {users.map(users => users.map(users => {
+        return <Recipes key={users.name} data={users} >successfully registered!</Recipes>
+        }
+
+      ))}
     </div>
-
-    <div>
-      {touched.password && errors.password && <p>{errors.password}</p>}
-      <Field type="password" name="password" placeholder="Password" />
-    </div>
-
-    <button type='submit' disabled={isSubmitting}>Submit!</button>
-  </Form>
-
-  {users.map(users => (
-    <div key={users.id}>{users.name} successfully registered!</div>
-
-  ))}
-</div>
-);
+  );
 };
 
 // Higher Order Component - HOC
@@ -62,7 +66,7 @@ const FormikRegForm = withFormik({
 
   handleSubmit(values, { setStatus, resetForm, setSubmitting }) {
     axios
-      .post(`http://localhost:6000/api/register`, values)
+      .post(`http://localhost:5000/api/register/`, values)
       .then(res => {
         console.log(res.data);
         setStatus(res.data);
@@ -74,7 +78,7 @@ const FormikRegForm = withFormik({
         setSubmitting(false);
       });
     axios
-    .get(`http://localhost:5000/api/restricted/data`, values)
+      .get(`http://localhost:5000/api/restricted/data`, values)
       .then(res => {
         console.log(res.data);
         setStatus(res.data);
