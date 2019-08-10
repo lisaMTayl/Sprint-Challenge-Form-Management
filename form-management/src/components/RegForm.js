@@ -7,7 +7,6 @@ import * as Yup from 'yup';
 const RegForm = ({ status, errors, touched, values, isSubmitting }) => {
   const [users, setUsers] = useState([]);
 
-
   useEffect(() => {
     if (status) {
       setUsers(users => [...users, status])
@@ -15,11 +14,9 @@ const RegForm = ({ status, errors, touched, values, isSubmitting }) => {
   }, [status]);
 
 
-
   return (
     <div className="reg-form">
       <h1>Registration Form</h1>
-
       <Form>
         <div>
           <Field type="text" name="userName" placeholder="username" />
@@ -70,7 +67,8 @@ const FormikRegForm = withFormik({
       .then(res => {
         console.log(res.data);
         setStatus(res.data);
-        resetForm();
+       // had to move resetForm to the get
+        // resetForm();
         setSubmitting(false);
       })
       .catch(err =>  {
@@ -82,6 +80,7 @@ const FormikRegForm = withFormik({
       .then(res => {
         console.log(res.data);
         setStatus(res.data);
+        resetForm();
       })
 
   }

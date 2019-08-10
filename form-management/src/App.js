@@ -6,7 +6,6 @@ function App() {
   return (
     <div data-testid='renderedForm' className="App">
       <FormikRegForm />
-      
     </div>
   );
 }
