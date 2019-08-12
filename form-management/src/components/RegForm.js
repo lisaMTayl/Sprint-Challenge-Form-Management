@@ -31,8 +31,9 @@ const RegForm = ({ status, errors, touched, values, isSubmitting }) => {
         <button type='submit' disabled={isSubmitting}>Submit!</button>
       </Form>
 
+
       {users.map(users => users.map(users => {
-        return <Recipes key={users.name} data={users} >successfully registered!</Recipes>
+        return <Recipes data-testingid='submit' key={users.name} data={users} >Welcome, {users.name}. You have successfully registered!</Recipes>
         }
 
       ))}

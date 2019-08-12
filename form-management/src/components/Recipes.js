@@ -15,17 +15,17 @@ class Recipes extends Component {
   }*/
 
 render() {
-  console.log(this.props.data)
+  console.log(this.props.data);
  return (
-    <RecipeDiv>
+    <div>
       <h2>
         {this.props.data.name}
       </h2>
       <h3>Course: {this.props.data.course}</h3>
       <h3>Technique: {this.props.data.technique}</h3>
-      <p>Ingredients: {this.props.data.ingredients.map(e => <li>{e}</li>)}</p>
-    </RecipeDiv>
+      <h3>Ingredients: {this.props.data.ingredients.map(e => <li>{e}</li>)}</h3>
+    </div>
   );
-}  };
+}  }
 
 export default Recipes;
